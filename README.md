@@ -292,7 +292,7 @@ final position = renderBox.localToGlobal(Offset.zero);
 ```
 For each widget we want to highlight, we need to know: "Where is it on the screen?" and "How big is it?" The `localToGlobal(Offset.zero)` call converts the widget's local **top-left corner (0, 0)** to global screen coordinates. Then we create a rectangle that's slightly larger than the widget itself. That's our padding creating a visual "breathing room" around the highlighted area. Finally, we add each highlighted area to our path as a rounded rectangle. 
 
-<img src="https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/local_to_global.png?raw=true" alt="Corner Offset" width="300" height="auto">
+<img src="https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/local_to_global.png?raw=true" alt="Corner Offset" width="600" height="auto">
 
 #### The final touch
 ```
