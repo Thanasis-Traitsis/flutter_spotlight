@@ -100,7 +100,7 @@ A few important things are happening here:
 - The `Stack` allows us to layer widgets on top of each other
 - The `Scaffold` remains untouched and behaves exactly as before
 - The overlay is rendered only when needed, controlled by _shouldShowOverlay
-- Positioned.fill ensures the overlay covers the entire screen
+- `Positioned.fill` ensures the overlay covers the entire screen
 
 Now, let’s look at some of the more interesting parts of this implementation.
 
@@ -108,7 +108,7 @@ Now, let’s look at some of the more interesting parts of this implementation.
 You’ll notice that we pass a variable called **highlightWidgetKeys**. This is a list of `GlobalKey`s that correspond to the widgets we want to highlight. Since we may want to spotlight more than one widget at a time, we use a List.
 
 **Why GlobalKeys?**
-GlobalKeys are special identifiers in Flutter that let us access a widget's `RenderObject` (the actual painted object on screen) and its position. Without them, we couldn't know where to "cut holes" in the overlay.
+GlobalKeys are special identifiers in Flutter that let us access a widget's `RenderObject` (the actual painted object on screen) and its position. Without them, we couldn't know where to "cut holes" in the overlay. You can check the detailed documentation [here](https://api.flutter.dev/flutter/widgets/GlobalKey-class.html).
 
 #### Styling the highlights
 You’ll also notice that we pass a `HighlightStyle` object into our overlay. This is a small but important design choice.
