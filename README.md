@@ -1,5 +1,6 @@
 # Creating Spotlight Tutorials in Flutter: The Complete Guide to Selective Overlays
 
+![Header](https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/spotlight_dashboard.png?raw=true)
 Hello there, my Flutter friends! Recently, I downloaded an app and, when I opened it for the first time, I noticed this cool feature that many apps use to guide new users through their core functionality. You know what I am talking about: a button gets highlighted, the rest of the screen fades out, and your attention is drawn exactly where the developer wants it to be. This kind of **spotlight onboarding** is everywhere, and that’s when I had my “Eureka” moment!
 
 That’s what this blog is all about. We’ll build this exact effect in Flutter, step by step, and use it as an opportunity to deeply understand how Flutter handles rendering, painting, and widget positioning under the hood.
@@ -7,14 +8,14 @@ That’s what this blog is all about. We’ll build this exact effect in Flutter
 ## The UI Setup
 I want to keep the UI as simple as possible. We’ll start with a clean home screen that contains just a few buttons. The ones we’re going to highlight, and one extra button that will trigger the highlight effect. Yes, we’ll manually turn the effect on and off. You don’t expect me to build a full onboarding system from scratch… do you? You can find all the code you need from the github repository at the end of this article.
 
-[IMAGE OF THE HOME SCREEN] 
+<img src="https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/home_screen.png?raw=true" alt="Home Screen" width="300" height="auto">
 
 ## The Highlight Effect
 Now it’s time for the interesting part. How do we "remove" the color from the entire screen, while keeping specific widgets fully visible? The answer is simple: **we don’t remove anything**. Instead, we are going to add something on top.
 
 To achieve this effect, we introduce an extra layer that sits above our existing UI. This layer acts as a semi-transparent overlay, covering the whole screen and dimming everything underneath. The key trick, however, is that this overlay is not solid. We intentionally “cut out” specific areas that line up with the widgets we want to highlight.
 
-[IMAGE SHOWING THE LAYERS]
+<img src="https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/layers.png?raw=true" alt="Layers" width="450" height="auto">
 
 ### How does this effect work?
 We add a full-screen overlay on top of our screen and paint it with a dark color and some opacity. This allows the underlying UI to remain visible, but visually de-emphasized. Then, for each widget we want to spotlight, we carve a transparent hole in that overlay, positioned exactly where the widget appears on the screen.
@@ -24,7 +25,7 @@ As a result:
 - The highlighted widgets remain completely clear and untouched
 - The user’s attention is naturally drawn to the important elements
 
-[IMAGE SHOWING THE STEPS]
+![Overlay Steps](https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/overlay_steps.png?raw=true)
 
 Nothing from the original UI is modified or removed. The entire effect is purely visual and lives in its own layer, which makes it both powerful and flexible. Now that we have a clear picture of what we want to achieve, it’s time to start building it.
 
@@ -291,7 +292,7 @@ final position = renderBox.localToGlobal(Offset.zero);
 ```
 For each widget we want to highlight, we need to know: "Where is it on the screen?" and "How big is it?" The `localToGlobal(Offset.zero)` call converts the widget's local **top-left corner (0, 0)** to global screen coordinates. Then we create a rectangle that's slightly larger than the widget itself. That's our padding creating a visual "breathing room" around the highlighted area. Finally, we add each highlighted area to our path as a rounded rectangle. 
 
-[IMAGE WITH THE CORNER]
+<img src="https://github.com/Thanasis-Traitsis/flutter_spotlight/blob/main/assets/local_to_global.png?raw=true" alt="Corner Offset" width="300" height="auto">
 
 #### The final touch
 ```
@@ -354,7 +355,7 @@ More importantly, we took a look under the hood. We didn’t just use Flutter’
 
 If you enjoyed this article and want to stay connected, feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/thanasis-traitsis/).
 
-If you'd like to dive deeper into the code and contribute to the project, visit the repository on [GitHub](https://github.com/Thanasis-Traitsis/flutter_card_flip).
+If you'd like to dive deeper into the code and contribute to the project, visit the repository on [GitHub](https://github.com/Thanasis-Traitsis/flutter_spotlight).
 
 Was this guide helpful? Consider buying me a coffee!☕️ Your contribution goes a long way in fuelling future content and projects. [Buy Me a Coffee](https://www.buymeacoffee.com/thanasis_traitsis).
 
